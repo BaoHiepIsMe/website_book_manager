@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ký tài liệu | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html" class="active"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div style="font-size: 14px; color: var(--text-light); display: flex; align-items: center; gap: 8px;">
+                    <a href="app-esignature.html"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                    <span style="border-left: 1px solid #cbd5e1; height: 16px; margin: 0 5px;"></span>
+                    <span style="color: var(--text-dark); font-weight: 600;">Hợp đồng Thuê Văn phòng 2025.pdf</span>
+                </div>
+
+                <div class="user-menu">
+                    <span style="font-size: 13px; color: #64748b; margin-right: 10px;">Đã điền: <strong>1/2</strong> vị trí</span>
+                    <button class="btn-sm" style="background: var(--success); color: white; border: none; padding: 10px 24px; font-weight: 600;">
+                        Hoàn thành & Gửi <i class="fas fa-paper-plane" style="margin-left: 5px;"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-body" style="padding-bottom: 0;">
+                
+                <div class="doc-viewer-container">
+                    
+                    <div class="doc-preview" style="background: #e2e8f0;">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Document Page">
+                        
+                        <div class="doc-overlay-marker" title="AI detected signature field">
+                            <i class="fas fa-pen"></i> Ký tại đây
+                        </div>
+
+                        <div class="viewer-toolbar">
+                            <span style="color: white; font-size: 12px; margin-right: 10px;">Trang 5 / 12</span>
+                            <i class="fas fa-chevron-left viewer-btn"></i>
+                            <i class="fas fa-chevron-right viewer-btn"></i>
+                        </div>
+                    </div>
+
+                    <div class="ai-sidebar" style="border: none; box-shadow: none; background: transparent;">
+                        <div class="signing-tool-container">
+                            
+                            <h3 style="margin-bottom: 20px; font-size: 16px;">Tạo chữ ký của bạn</h3>
+
+                            <div class="sign-tabs">
+                                <div class="sign-tab-btn active" onclick="switchTab('draw')">Vẽ tay</div>
+                                <div class="sign-tab-btn" onclick="switchTab('type')">Gõ tên</div>
+                                <div class="sign-tab-btn" onclick="switchTab('upload')">Upload ảnh</div>
+                            </div>
+
+                            <div id="tab-draw" class="signature-content">
+                                <div class="signature-pad-area">
+                                    <span class="signature-placeholder">Ký vào khung này</span>
+                                    <svg width="200" height="100" style="position: absolute; pointer-events: none;">
+                                        <path d="M10,50 Q50,10 80,50 T150,50" stroke="#0f172a" stroke-width="3" fill="none" />
+                                    </svg>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <button class="btn-sm" style="background: white; border: 1px solid #cbd5e1; color: var(--danger); font-size: 12px;">Xóa</button>
+                                </div>
+                            </div>
+
+                            <div id="tab-type" class="signature-content" style="display: none;">
+                                <input type="text" class="form-input" value="Nguyen Van A" style="margin-bottom: 15px;">
+                                <div class="signature-font-preview">Nguyen Van A</div>
+                            </div>
+
+                            <div style="margin-top: 20px;">
+                                <div class="form-label" style="margin-bottom: 10px;">Màu mực</div>
+                                <div style="display: flex; gap: 10px;">
+                                    <div style="width: 24px; height: 24px; background: #000; border-radius: 50%; cursor: pointer; border: 2px solid #cbd5e1;"></div>
+                                    <div style="width: 24px; height: 24px; background: #000080; border-radius: 50%; cursor: pointer;"></div>
+                                    <div style="width: 24px; height: 24px; background: #b91c1c; border-radius: 50%; cursor: pointer;"></div>
+                                </div>
+                            </div>
+
+                            <button class="btn-primary" style="margin-top: 30px; width: 100%;">Áp dụng chữ ký</button>
+
+                            <div class="legal-text">
+                                <i class="fas fa-lock" style="margin-bottom: 5px;"></i><br>
+                                Bằng việc nhấn "Áp dụng", bạn đồng ý rằng chữ ký điện tử này có giá trị pháp lý tương đương với chữ ký tay theo Luật Giao dịch điện tử.
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(type) {
+            // Reset active tab UI
+            document.querySelectorAll('.sign-tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Ẩn hiện nội dung (Giả lập đơn giản)
+            if (type === 'type') {
+                document.getElementById('tab-draw').style.display = 'none';
+                document.getElementById('tab-type').style.display = 'block';
+            } else {
+                document.getElementById('tab-draw').style.display = 'block';
+                document.getElementById('tab-type').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

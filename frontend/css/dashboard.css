@@ -1,0 +1,804 @@
+/* css/dashboard.css */
+
+/* 1. VARIABLES (Dùng chung bộ màu với Landing Page) */
+:root {
+    --primary: #0f172a;       /* Navy Blue - Sidebar */
+    --accent: #3b82f6;        /* Bright Blue - Action */
+    --bg-body: #f1f5f9;       /* Light Gray - Background App */
+    --white: #ffffff;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --danger: #ef4444;        /* Đỏ - Cảnh báo Audit */
+    --warning: #f59e0b;       /* Cam - Chờ ký */
+    --success: #10b981;       /* Xanh - Đã xong */
+    --sidebar-width: 260px;
+    --header-height: 70px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* 2. LAYOUT CHÍNH */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 3. SIDEBAR (Bên trái) */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary);
+    color: #94a3b8;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-menu { padding: 20px 0; flex: 1; }
+.menu-label { padding: 10px 24px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #475569; font-weight: 600; }
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    color: #cbd5e1;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+    background: rgba(255,255,255,0.05);
+    color: var(--white);
+    border-left: 3px solid var(--accent);
+}
+
+.sidebar-menu i { margin-right: 12px; width: 20px; text-align: center; }
+
+/* 4. MAIN CONTENT (Phần phải) */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header (Thanh tìm kiếm & User) */
+.top-header {
+    height: var(--header-height);
+    background: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-body);
+    padding: 8px 16px;
+    border-radius: 20px;
+    width: 300px;
+}
+.search-box input { border: none; background: transparent; outline: none; margin-left: 10px; color: var(--text-dark); width: 100%; }
+
+.user-menu { display: flex; align-items: center; gap: 20px; }
+.notification { position: relative; cursor: pointer; }
+.badge-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: var(--danger); border-radius: 50%; }
+.user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.avatar { width: 36px; height: 36px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: bold; }
+
+/* Content Body */
+.dashboard-body { padding: 30px; }
+.page-title { margin-bottom: 24px; }
+.page-title h2 { font-size: 24px; font-weight: 700; }
+.page-title p { color: var(--text-light); font-size: 14px; margin-top: 5px; }
+
+/* 5. STATS CARDS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.icon-blue { background: #e0f2fe; color: var(--accent); }
+.icon-green { background: #d1fae5; color: var(--success); }
+.icon-orange { background: #fef3c7; color: var(--warning); }
+.icon-red { background: #fee2e2; color: var(--danger); }
+
+.card h3 { font-size: 14px; color: var(--text-light); font-weight: 500; }
+.card .number { font-size: 28px; font-weight: 700; margin: 5px 0; }
+.card .trend { font-size: 12px; }
+.trend.up { color: var(--success); }
+.trend.down { color: var(--danger); }
+
+/* 6. TABLE (Recent Documents) */
+.table-section { background: var(--white); padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 6px; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 12px; font-size: 13px; color: var(--text-light); border-bottom: 1px solid #e2e8f0; }
+td { padding: 16px 12px; font-size: 14px; border-bottom: 1px solid #f1f5f9; color: var(--text-dark); }
+tr:hover { background-color: #f8fafc; }
+
+.status-badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.status-badge.safe { background: #d1fae5; color: #065f46; } /* Audit OK */
+.status-badge.risk { background: #fee2e2; color: #991b1b; } /* Audit Warning */
+.status-badge.pending { background: #fef3c7; color: #92400e; } /* Chờ ký */
+
+.tag-badge { background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-right: 4px; border: 1px solid #e2e8f0; }
+
+/* --- THÊM VÀO CUỐI css/dashboard.css --- */
+
+/* DOCUMENTS PAGE STYLES */
+
+/* 1. Drag & Drop Zone (Vùng thả file) */
+.upload-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    background: #f8fafc;
+    margin-bottom: 30px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.upload-zone:hover {
+    border-color: var(--accent);
+    background: #eff6ff;
+}
+.upload-icon {
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+/* 2. Folder Grid (Lưới thư mục) */
+.folder-section { margin-bottom: 30px; }
+.section-title-sm { font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.folder-card {
+    background: var(--white);
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.folder-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.folder-icon {
+    font-size: 24px;
+    color: #f59e0b; /* Màu vàng thư mục */
+    margin-right: 12px;
+}
+
+/* 3. AI Tags trong bảng */
+.ai-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-right: 5px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: var(--text-dark);
+}
+.ai-tag i { margin-right: 4px; font-size: 10px; color: var(--accent); }
+
+/* Điểm tin cậy (Confidence Score) */
+.confidence-score {
+    font-size: 11px;
+    color: var(--success);
+    font-weight: 600;
+}
+/* --- THÊM TIẾP VÀO CUỐI css/dashboard.css --- */
+
+/* ESIGNATURE PAGE STYLES */
+
+/* 1. Tab Navigation (Menu chuyển tab) */
+.tab-menu {
+    display: flex;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+.tab-item {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+.tab-item:hover { color: var(--accent); }
+.tab-item.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+.tab-count {
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    margin-left: 6px;
+    color: var(--text-dark);
+}
+
+/* 2. Avatar Group (Nhóm người ký) */
+.avatar-group { display: flex; align-items: center; }
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    background: #cbd5e1;
+    color: var(--white);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px; /* Tạo hiệu ứng chồng lên nhau */
+    font-weight: 600;
+}
+.avatar-sm:first-child { margin-left: 0; }
+.avatar-sm.done { background: var(--success); } /* Người đã ký màu xanh */
+.avatar-sm.pending { background: var(--warning); } /* Người chưa ký màu vàng */
+
+/* 3. Progress Bar nhỏ */
+.progress-wrapper { width: 100px; }
+.progress-text { font-size: 11px; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.progress-bar-bg { height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--success); border-radius: 3px; }
+
+/* --- THÊM TIẾP VÀO CUỐI css/dashboard.css --- */
+
+/* AUDIT PAGE STYLES */
+
+/* 1. Filter Bar (Thanh lọc dữ liệu) */
+.filter-bar {
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 15px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.filter-group { display: flex; align-items: center; gap: 8px; }
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: var(--text-dark);
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+}
+
+/* 2. AI Risk Banner (Cảnh báo rủi ro từ AI) */
+.ai-alert-box {
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-left: 4px solid var(--danger);
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+.ai-alert-icon { color: var(--danger); font-size: 20px; margin-top: 2px; }
+.ai-alert-content h4 { font-size: 15px; margin-bottom: 4px; color: #991b1b; }
+.ai-alert-content p { font-size: 13px; color: #b91c1c; }
+
+/* 3. Severity Badges (Nhãn mức độ) */
+.badge-level {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.level-critical { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.level-warning  { background: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+.level-info     { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+.level-success  { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+/* 4. User Cell (Hiển thị User trong bảng) */
+.user-cell { display: flex; flex-direction: column; }
+.user-ip { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+/* --- THÊM VÀO CUỐI css/dashboard.css --- */
+
+/* STORAGE PAGE STYLES */
+
+/* 1. Storage Visualizer (Thanh dung lượng đa màu) */
+.storage-overview {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+.storage-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; }
+.storage-total { font-size: 32px; font-weight: 800; color: var(--text-dark); }
+.storage-total span { font-size: 14px; font-weight: 500; color: var(--text-light); }
+
+.storage-bar {
+    height: 24px;
+    width: 100%;
+    background: #f1f5f9;
+    border-radius: 12px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.sb-segment { height: 100%; transition: width 0.5s ease; position: relative; }
+/* Tooltip on hover (Optional) */
+.sb-segment:hover { opacity: 0.9; cursor: pointer; }
+
+/* Màu sắc các loại file */
+.bg-docs { background: #3b82f6; }   /* Xanh dương */
+.bg-media { background: #10b981; }  /* Xanh lá */
+.bg-backup { background: #8b5cf6; } /* Tím */
+.bg-other { background: #cbd5e1; }  /* Xám */
+
+.storage-legend { display: flex; gap: 20px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; font-size: 13px; color: var(--text-light); }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+
+/* 2. Policy Cards (Thẻ quy tắc lưu trữ) */
+.policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+.policy-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--accent); /* Viền trái màu xanh */
+    position: relative;
+}
+.policy-active { border-left-color: var(--success); }
+.policy-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.policy-title { font-weight: 700; font-size: 16px; }
+.policy-desc { font-size: 13px; color: var(--text-light); margin-bottom: 15px; line-height: 1.5; }
+
+.policy-switch {
+    display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600;
+}
+/* Toggle Switch giả lập bằng CSS */
+.switch-toggle {
+    width: 36px; height: 20px; background: #cbd5e1; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s;
+}
+.switch-toggle::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; transition: 0.3s;
+}
+.switch-active { background: var(--success); }
+.switch-active::after { left: 18px; }
+
+/* 3. Backup Status */
+.backup-status {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;
+    padding: 15px 20px; border-radius: var(--radius); margin-bottom: 30px;
+}
+/* --- DÁN VÀO CUỐI FILE css/dashboard.css --- */
+
+/* =========================================
+   SETTINGS PAGE STYLES (NEW UI)
+   ========================================= */
+
+/* 1. Card Container (Khung nền trắng) */
+.settings-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+.settings-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 2. Rows (Dòng cấu hình - Căn chỉnh ngang) */
+.setting-row {
+    display: flex; /* Flexbox giúp căn ngang */
+    justify-content: space-between; /* Đẩy chữ sang trái, nút sang phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 16px 0;
+    border-bottom: 1px solid #f8fafc;
+}
+.setting-row:last-child { border-bottom: none; }
+
+.setting-info {
+    flex: 1; /* Chiếm phần lớn diện tích */
+    padding-right: 20px;
+}
+.setting-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    display: block;
+}
+.setting-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.setting-action {
+    flex-shrink: 0; /* Không cho phép bị co lại */
+}
+
+/* 3. Inputs & Selects đẹp */
+.custom-select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    color: var(--text-dark);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    min-width: 150px;
+}
+.custom-select:focus {
+    border-color: var(--accent);
+    background: white;
+}
+
+/* 4. Switch Toggle (Nút gạt) */
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background-color: #cbd5e1;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.toggle-switch.active { background-color: var(--success); }
+.toggle-switch.active::after { left: 22px; }
+
+/* 5. Member List Style */
+.member-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+.member-item:last-child { border-bottom: none; }
+
+.member-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #e2e8f0; color: #64748b;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    margin-right: 15px;
+}
+.member-details { flex: 1; }
+.member-name { font-size: 14px; font-weight: 600; color: var(--text-dark); display: block; }
+.member-email { font-size: 12px; color: var(--text-light); }
+
+.role-badge {
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-right: 20px;
+}
+.role-owner { background: #fee2e2; color: #ef4444; }
+.role-editor { background: #e0f2fe; color: #0ea5e9; }
+.role-viewer { background: #f1f5f9; color: #64748b; }
+
+.member-actions { display: flex; gap: 10px; }
+.member-actions i {
+    width: 28px; height: 28px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: #94a3b8; cursor: pointer; transition: 0.2s;
+}
+.member-actions i:hover { background: #f1f5f9; color: var(--accent); }
+
+/* 6. Form Grid (Cho phần thông tin tổ chức) */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { margin-bottom: 15px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.form-input {
+    width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px;
+}
+/* --- THÊM VÀO CUỐI css/dashboard.css --- */
+
+/* DOCUMENT DETAIL PAGE STYLES */
+
+/* 1. Layout chia đôi (Viewer vs AI Panel) */
+.doc-viewer-container {
+    display: flex;
+    height: calc(100vh - 140px); /* Trừ đi header và title */
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* 2. Document Preview (Bên trái) */
+.doc-preview {
+    flex: 1;
+    background: #525659; /* Màu nền PDF Viewer chuẩn */
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+.doc-preview img {
+    max-width: 90%;
+    max-height: 95%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid #ddd;
+}
+
+/* Toolbar bên trên viewer */
+.viewer-toolbar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    padding: 8px 16px;
+    border-radius: 30px;
+    display: flex;
+    gap: 15px;
+}
+.viewer-btn {
+    color: white; font-size: 16px; cursor: pointer; transition: 0.2s;
+}
+.viewer-btn:hover { color: var(--accent); }
+
+/* 3. AI Sidebar (Bên phải) */
+.ai-sidebar {
+    width: 350px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.ai-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ai-header h3 { font-size: 14px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+
+.ai-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Form Fields do AI điền */
+.ai-field-group { margin-bottom: 16px; position: relative; }
+.ai-field-label { font-size: 12px; color: var(--text-light); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.ai-input {
+    width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: var(--text-dark); background: #fff;
+}
+/* Hiệu ứng viền xanh cho thấy AI tự điền */
+.ai-filled { border-color: #86efac; background: #f0fdf4; }
+.confidence-badge { font-size: 10px; color: #166534; background: #dcfce7; padding: 1px 6px; border-radius: 4px; }
+
+/* AI Summary Box */
+.ai-summary {
+    background: #eff6ff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #1e3a8a;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    border: 1px solid #dbeafe;
+}
+
+/* Action Footer */
+.ai-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    gap: 10px;
+}
+/* --- THÊM VÀO CUỐI css/dashboard.css --- */
+
+/* SIGNING PAD STYLES */
+
+/* 1. Canvas Container (Khung vẽ) */
+.signing-tool-container {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid #e2e8f0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Tabs (Vẽ / Gõ / Upload) */
+.sign-tabs {
+    display: flex;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.sign-tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.sign-tab-btn.active {
+    background: var(--white);
+    color: var(--text-dark);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 3. Drawing Area (Vùng vẽ) */
+.signature-pad-area {
+    border: 2px dashed #cbd5e1;
+    background-color: #f8fafc;
+    height: 200px;
+    border-radius: 8px;
+    position: relative;
+    cursor: crosshair;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.signature-placeholder {
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none; /* Để không chặn chuột khi vẽ thật */
+}
+
+/* 4. Type Preview (Mô phỏng chữ ký text) */
+/* Import Font chữ ký cho đẹp */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.signature-font-preview {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    color: var(--primary);
+    text-align: center;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 15px;
+}
+
+/* 5. "Sign Here" Flag (Cờ đánh dấu trên tài liệu) */
+.doc-overlay-marker {
+    position: absolute;
+    top: 60%; left: 60%; /* Vị trí giả định */
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+.doc-overlay-marker:hover { transform: scale(1.1); }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* 6. Legal Disclaimer */
+.legal-text {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: auto; /* Đẩy xuống đáy */
+    text-align: center;
+    line-height: 1.4;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật ký Kiểm toán | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html" class="active"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search" style="color: #94a3b8;"></i>
+                    <input type="text" placeholder="Tìm kiếm IP, User, Hành động...">
+                </div>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body">
+                
+                <div class="page-title">
+                    <h2>Nhật ký Kiểm toán (Audit Logs)</h2>
+                    <p>Giám sát tuân thủ GDPR và phát hiện rủi ro bảo mật 24/7.</p>
+                </div>
+
+                <div class="ai-alert-box">
+                    <i class="fas fa-exclamation-triangle ai-alert-icon"></i>
+                    <div class="ai-alert-content">
+                        <h4>Phát hiện hành vi bất thường (Anomaly Detection)</h4>
+                        <p>AI Audit Tracking Agent đã phát hiện User <b>nguyenvana</b> tải xuống <b>50+ tài liệu</b> trong vòng 2 phút. Vui lòng kiểm tra.</p>
+                        <div style="margin-top: 10px;">
+                            <button class="btn-sm" style="background: #991b1b; color: white; border: none;margin-bottom: 10px;">Khóa tài khoản</button>
+                            <button class="btn-sm" style="background: white; border: 1px solid #991b1b; color: #991b1b; margin-left: 5px;">Bỏ qua</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+                    <div class="card" style="padding: 20px;">
+                        <div style="color: var(--text-light); font-size: 13px;">Điểm tuân thủ (GDPR)</div>
+                        <div class="number" style="color: var(--success);">98%</div>
+                    </div>
+                    <div class="card" style="padding: 20px;">
+                        <div style="color: var(--text-light); font-size: 13px;">Tổng sự kiện (24h)</div>
+                        <div class="number">1,204</div>
+                    </div>
+                    <div class="card" style="padding: 20px;">
+                        <div style="color: var(--text-light); font-size: 13px;">Cảnh báo Rủi ro</div>
+                        <div class="number" style="color: var(--danger);">1</div>
+                    </div>
+                    <div class="card" style="padding: 20px;">
+                        <div style="color: var(--text-light); font-size: 13px;">User đang hoạt động</div>
+                        <div class="number">14</div>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <i class="fas fa-filter" style="color: #64748b;"></i>
+                        <span>Lọc theo:</span>
+                    </div>
+                    <select class="filter-select">
+                        <option>Tất cả mức độ</option>
+                        <option>Critical (Nguy hiểm)</option>
+                        <option>Warning (Cảnh báo)</option>
+                        <option>Info (Thông tin)</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Tất cả hành động</option>
+                        <option>Login / Logout</option>
+                        <option>Tải xuống (Download)</option>
+                        <option>Xóa tài liệu</option>
+                    </select>
+                    <input type="date" class="filter-select">
+                    <button class="btn-sm" style="background: var(--primary); color: white; border: none; margin-left: auto;">
+                        <i class="fas fa-file-export"></i> Xuất báo cáo
+                    </button>
+                </div>
+
+                <div class="table-section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Người thực hiện (Actor)</th>
+                                <th>Hành động</th>
+                                <th>Đối tượng (Target)</th>
+                                <th>Mức độ</th>
+                                <th>Kết quả</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr style="background-color: #fef2f2;">
+                                <td>10:45:12 AM <br><span style="font-size: 11px; color: #94a3b8;">25/11/2025</span></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <b>nguyenvana</b>
+                                        <span class="user-ip">IP: 14.162.xxx.xxx</span>
+                                    </div>
+                                </td>
+                                <td><b>Mass Download</b></td>
+                                <td>50 files (HR Data)</td>
+                                <td><span class="badge-level level-critical">Critical</span></td>
+                                <td><i class="fas fa-ban" style="color: var(--danger);"></i> Blocked</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: var(--accent);"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>09:30:00 AM <br><span style="font-size: 11px; color: #94a3b8;">25/11/2025</span></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <b>tranthib</b>
+                                        <span class="user-ip">IP: 192.168.1.15</span>
+                                    </div>
+                                </td>
+                                <td>Chia sẻ ra ngoài</td>
+                                <td>Báo_cáo_Q3.xlsx</td>
+                                <td><span class="badge-level level-warning">Warning</span></td>
+                                <td><i class="fas fa-check" style="color: var(--success);"></i> Success</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: var(--accent);"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>09:15:22 AM <br><span style="font-size: 11px; color: #94a3b8;">25/11/2025</span></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <b>System (AI Agent)</b>
+                                        <span class="user-ip">Server Internal</span>
+                                    </div>
+                                </td>
+                                <td>Auto-Archiving</td>
+                                <td>Folder: Hợp đồng 2022</td>
+                                <td><span class="badge-level level-info">Info</span></td>
+                                <td><i class="fas fa-check" style="color: var(--success);"></i> Success</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: var(--accent);"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>08:00:05 AM <br><span style="font-size: 11px; color: #94a3b8;">25/11/2025</span></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <b>admin</b>
+                                        <span class="user-ip">IP: 192.168.1.2</span>
+                                    </div>
+                                </td>
+                                <td>Login</td>
+                                <td>Admin Dashboard</td>
+                                <td><span class="badge-level level-success">Success</span></td>
+                                <td><i class="fas fa-check" style="color: var(--success);"></i> Success</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: var(--accent);"></i></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    
+                    <div style="display: flex; justify-content: center; margin-top: 20px; gap: 10px;">
+                        <button class="btn-sm" style="background: white; border: 1px solid #e2e8f0;">Trước</button>
+                        <button class="btn-sm" style="background: var(--primary); color: white; border: none;">1</button>
+                        <button class="btn-sm" style="background: white; border: 1px solid #e2e8f0;">2</button>
+                        <button class="btn-sm" style="background: white; border: 1px solid #e2e8f0;">3</button>
+                        <button class="btn-sm" style="background: white; border: 1px solid #e2e8f0;">Sau</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

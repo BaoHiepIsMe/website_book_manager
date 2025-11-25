@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI DocOps</title>
+    
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html"><i class="fas fa-file-signature"></i> Chữ ký số <span style="margin-left:auto; background:#ef4444; color:white; padding:2px 6px; font-size:10px; border-radius:4px;">3</span></a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search" style="color: #94a3b8;"></i>
+                    <input type="text" placeholder="Tìm kiếm tài liệu, hợp đồng...">
+                </div>
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell" style="font-size: 20px; color: #64748b;"></i>
+                        <span class="badge-dot"></span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin User</span>
+                        <i class="fas fa-chevron-down" style="font-size: 12px; color: #94a3b8;"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body">
+                
+                <div class="page-title">
+                    <h2>Xin chào, Admin! 👋</h2>
+                    <p>Đây là những gì đang diễn ra với hệ thống tài liệu của bạn hôm nay.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="card">
+                        <div class="card-icon icon-blue"><i class="fas fa-file-alt"></i></div>
+                        <h3>Tài liệu mới (Tháng này)</h3>
+                        <div class="number">1,245</div>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 12% so với tháng trước</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon icon-orange"><i class="fas fa-file-signature"></i></div>
+                        <h3>Đang chờ ký duyệt</h3>
+                        <div class="number">8</div>
+                        <span class="trend" style="color: #f59e0b;">Cần xử lý ngay</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon icon-red"><i class="fas fa-user-shield"></i></div>
+                        <h3>Cảnh báo rủi ro</h3>
+                        <div class="number">2</div>
+                        <span class="trend down">Phát hiện truy cập lạ</span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon icon-green"><i class="fas fa-database"></i></div>
+                        <h3>Dung lượng lưu trữ</h3>
+                        <div class="number">45%</div>
+                        <span class="trend">120GB / 500GB (An toàn)</span>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-clock" style="color: #94a3b8; margin-right: 8px;"></i> Hoạt động gần đây</h3>
+                        <button class="btn-sm" style="background: var(--accent); color: white; border: none; cursor: pointer;">
+                            <i class="fas fa-upload"></i> Upload File
+                        </button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tên tài liệu</th>
+                                <th>Phân loại AI (Auto-Tag)</th>
+                                <th>Người xử lý</th>
+                                <th>Trạng thái Audit</th>
+                                <th>Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 20px;"></i>
+                                        <span style="font-weight: 500;">Hợp_đồng_Lao_động_NV05.pdf</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="tag-badge">Hợp đồng</span>
+                                    <span class="tag-badge">Nhân sự</span>
+                                </td>
+                                <td>Nguyễn Văn A</td>
+                                <td><span class="status-badge safe">An toàn</span></td>
+                                <td>Vừa xong</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-excel" style="color: #10b981; font-size: 20px;"></i>
+                                        <span style="font-weight: 500;">Báo_cáo_Tài_chính_Q3.xlsx</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="tag-badge">Tài chính</span>
+                                    <span class="tag-badge">Nội bộ</span>
+                                </td>
+                                <td>Trần Thị B</td>
+                                <td><span class="status-badge risk">Cảnh báo</span></td>
+                                <td>2 giờ trước</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-word" style="color: #3b82f6; font-size: 20px;"></i>
+                                        <span style="font-weight: 500;">Đề_xuất_Dự_án_MKT.docx</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="tag-badge">Marketing</span>
+                                    <span class="tag-badge">Công khai</span>
+                                </td>
+                                <td>Lê Văn C</td>
+                                <td><span class="status-badge pending">Đang chờ ký</span></td>
+                                <td>5 giờ trước</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-image" style="color: #8b5cf6; font-size: 20px;"></i>
+                                        <span style="font-weight: 500;">Scan_CCCD_Khach_hang.jpg</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="tag-badge">Pháp lý</span>
+                                    <span class="tag-badge">Bảo mật cao</span>
+                                </td>
+                                <td>Robot AI</td>
+                                <td><span class="status-badge safe">Đã mã hóa</span></td>
+                                <td>1 ngày trước</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

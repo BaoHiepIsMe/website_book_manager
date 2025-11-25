@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết tài liệu | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html" class="active"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div style="font-size: 14px; color: var(--text-light); display: flex; align-items: center; gap: 8px;">
+                    <a href="app-documents.html">Kho tài liệu</a>
+                    <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                    <a href="#">Hợp đồng</a>
+                    <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                    <span style="color: var(--text-dark); font-weight: 600;">HD_LaoDong_NguyenVanA.pdf</span>
+                </div>
+
+                <div class="user-menu">
+                    <button class="btn-sm" style="background: white; border: 1px solid #cbd5e1; margin-right: 10px;">
+                        <i class="fas fa-share-alt"></i> Chia sẻ
+                    </button>
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body" style="padding-bottom: 0;">
+                
+                <div class="doc-viewer-container">
+                    
+                    <div class="doc-preview">
+                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Document Preview">
+                        
+                        <div class="viewer-toolbar">
+                            <i class="fas fa-search-minus viewer-btn"></i>
+                            <span style="color: white; font-size: 14px;">100%</span>
+                            <i class="fas fa-search-plus viewer-btn"></i>
+                            <span style="border-left: 1px solid rgba(255,255,255,0.3); height: 16px; margin: 0 5px;"></span>
+                            <i class="fas fa-print viewer-btn"></i>
+                            <i class="fas fa-download viewer-btn"></i>
+                        </div>
+                    </div>
+
+                    <div class="ai-sidebar">
+                        <div class="ai-header">
+                            <h3><i class="fas fa-robot" style="color: var(--accent);"></i> AI Extraction</h3>
+                            <span class="confidence-badge" style="font-size: 11px;">Độ tin cậy: 98%</span>
+                        </div>
+
+                        <div class="ai-content">
+                            <div class="form-label" style="margin-bottom: 8px;">Tóm tắt nội dung (GenAI)</div>
+                            <div class="ai-summary">
+                                <i class="fas fa-sparkles" style="margin-right: 5px;"></i>
+                                Đây là Hợp đồng lao động không xác định thời hạn giữa Công ty TechCorp và ông Nguyễn Văn A. Mức lương cơ bản: 25.000.000 VNĐ. Ngày bắt đầu: 01/12/2025.
+                            </div>
+
+                            <div class="ai-field-group">
+                                <div class="ai-field-label">Loại tài liệu <span class="confidence-badge">99%</span></div>
+                                <input type="text" class="ai-input ai-filled" value="Hợp đồng lao động">
+                            </div>
+
+                            <div class="ai-field-group">
+                                <div class="ai-field-label">Bên A (Người sử dụng LĐ) <span class="confidence-badge">98%</span></div>
+                                <input type="text" class="ai-input ai-filled" value="Công ty Cổ phần TechCorp">
+                            </div>
+
+                            <div class="ai-field-group">
+                                <div class="ai-field-label">Bên B (Người lao động) <span class="confidence-badge">97%</span></div>
+                                <input type="text" class="ai-input ai-filled" value="Nguyễn Văn A">
+                            </div>
+
+                            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="ai-field-group">
+                                    <div class="ai-field-label">Ngày ký <span class="confidence-badge">95%</span></div>
+                                    <input type="date" class="ai-input ai-filled" value="2025-11-25">
+                                </div>
+                                <div class="ai-field-group">
+                                    <div class="ai-field-label">Thời hạn</div>
+                                    <select class="ai-input ai-filled">
+                                        <option>Vô thời hạn</option>
+                                        <option>1 năm</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ai-field-group">
+                                <div class="ai-field-label">Tags tự động</div>
+                                <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                                    <span class="ai-tag"><i class="fas fa-tag"></i> Hợp đồng <i class="fas fa-times" style="margin-left:5px; cursor:pointer;"></i></span>
+                                    <span class="ai-tag"><i class="fas fa-user"></i> Nhân sự <i class="fas fa-times" style="margin-left:5px; cursor:pointer;"></i></span>
+                                    <span class="ai-tag" style="background: white; border-style: dashed; cursor: pointer;">+ Thêm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-footer">
+                            <button class="btn-sm" style="background: var(--success); color: white; border: none; flex: 1;">
+                                <i class="fas fa-check"></i> Xác nhận
+                            </button>
+                            <button class="btn-sm" style="background: white; border: 1px solid #cbd5e1; color: var(--danger);">
+                                <i class="fas fa-trash"></i> Xóa
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DocOps - Nền tảng Quản trị Tài liệu Thông minh</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-cube"></i> AI DocOps
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#agents">Sản phẩm</a></li>
+                    <li><a href="#workflow">Quy trình</a></li>
+                    <li><a href="pricing.html">Bảng giá</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                    <li class="mobile-auth">
+                        <a href="#" class="btn-outline">Đăng nhập</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#" class="btn-login">Đăng nhập</a>
+                    <a href="#" class="btn btn-primary">Dùng thử miễn phí</a>
+                </div>
+
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">🚀 Version 2.0 đã ra mắt</div>
+                    <h1>Quản lý tài liệu <br> <span class="text-gradient">Tự động & Bảo mật</span></h1>
+                    <p>Giải phóng doanh nghiệp khỏi công việc giấy tờ thủ công với 5 Trợ lý AI chuyên biệt: Tự động phân loại, Ký số pháp lý và Lưu trữ chuẩn GDPR.</p>
+                    <div class="hero-btns">
+                        <a href="#" class="btn btn-primary">Bắt đầu ngay <i class="fas fa-arrow-right"></i></a>
+                        <a href="#agents" class="btn btn-outline-light">Xem Demo</a>
+                    </div>
+                    <div class="trust-badges">
+                        <span><i class="fas fa-check-circle"></i> ISO 27001</span>
+                        <span><i class="fas fa-check-circle"></i> GDPR Ready</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Dashboard Preview">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-check"></i> Đã ký duyệt
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-shield-alt"></i> An toàn
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agents" class="agents">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hệ sinh thái 5 "Siêu Agent"</h2>
+                <p>Mỗi Agent đảm nhận một nhiệm vụ chuyên biệt, phối hợp nhịp nhàng để vận hành doanh nghiệp 24/7.</p>
+            </div>
+
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <div class="icon-box color-1"><i class="fas fa-sitemap"></i></div>
+                    <h3>AI Document Manager</h3>
+                    <p>Bộ não trung tâm điều phối luồng tài liệu. Tự động chia sẻ đúng người, đúng phòng ban.</p>
+                    <span class="tag">Workflow</span>
+                </div>
+                <div class="agent-card">
+                    <div class="icon-box color-2"><i class="fas fa-robot"></i></div>
+                    <h3>AI Auto-Classification</h3>
+                    <p>OCR & NLP đọc hiểu nội dung. Tự động đặt tên file và gắn thẻ (tag) trong tích tắc.</p>
+                    <span class="tag">Automation</span>
+                </div>
+                <div class="agent-card">
+                    <div class="icon-box color-3"><i class="fas fa-file-signature"></i></div>
+                    <h3>AI E-signature</h3>
+                    <p>Tạo luồng ký, nhắc nhở đối tác và xác thực chữ ký số có giá trị pháp lý toàn cầu.</p>
+                    <span class="tag">Legal</span>
+                </div>
+                <div class="agent-card">
+                    <div class="icon-box color-4"><i class="fas fa-user-shield"></i></div>
+                    <h3>AI Audit Tracking</h3>
+                    <p>Giám sát 24/7. Phát hiện hành vi truy cập bất thường và báo cáo rủi ro ngay lập tức.</p>
+                    <span class="tag">Security</span>
+                </div>
+                <div class="agent-card">
+                    <div class="icon-box color-5"><i class="fas fa-database"></i></div>
+                    <h3>AI Secure Archiving</h3>
+                    <p>Quản lý vòng đời dữ liệu. Tự động sao lưu mã hóa và hủy tài liệu khi hết hạn lưu trữ.</p>
+                    <span class="tag">Storage</span>
+                </div>
+                <div class="agent-card integration-card">
+                    <div class="icon-box color-6"><i class="fas fa-plug"></i></div>
+                    <h3>Tích hợp API</h3>
+                    <p>Kết nối liền mạch với CRM, ERP, HRMS hiện có của bạn.</p>
+                    <a href="#" class="link-arrow">Xem tài liệu <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-title">
+                <h2>Luồng xử lý tự động</h2>
+            </div>
+            <div class="workflow-steps">
+                <div class="step-item">
+                    <div class="step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h4>1. Tiếp nhận</h4>
+                    <p>Upload/Scan tài liệu đầu vào.</p>
+                </div>
+                <div class="step-connector"><i class="fas fa-angle-right"></i></div>
+                <div class="step-item">
+                    <div class="step-icon"><i class="fas fa-cogs"></i></div>
+                    <h4>2. Phân loại & Ký</h4>
+                    <p>AI đọc, tag và gửi ký duyệt.</p>
+                </div>
+                <div class="step-connector"><i class="fas fa-angle-right"></i></div>
+                <div class="step-item">
+                    <div class="step-icon"><i class="fas fa-search-dollar"></i></div>
+                    <h4>3. Kiểm soát</h4>
+                    <p>Audit log ghi lại mọi thao tác.</p>
+                </div>
+                <div class="step-connector"><i class="fas fa-angle-right"></i></div>
+                <div class="step-item">
+                    <div class="step-icon"><i class="fas fa-server"></i></div>
+                    <h4>4. Lưu trữ</h4>
+                    <p>Mã hóa và backup an toàn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Sẵn sàng chuyển đổi số?</h2>
+                <p>Tham gia cùng hơn 500+ doanh nghiệp đang tối ưu hóa vận hành với AI DocOps.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-large">Đăng ký dùng thử</a>
+                    <a href="#" class="btn btn-outline btn-large">Liên hệ Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo"><i class="fa-solid fa-cube"></i> AI DocOps</div>
+                    <p>Giải pháp SaaS B2B hàng đầu cho quản lý tài liệu doanh nghiệp.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#">Tính năng</a></li>
+                        <li><a href="#">Bảng giá</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Kết nối</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 AI DocOps. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

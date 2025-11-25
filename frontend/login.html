@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | AI DocOps</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-side-image">
+            <div class="auth-quote">
+                <h2>"AI DocOps đã giúp chúng tôi giảm 80% thời gian xử lý giấy tờ hành chính."</h2>
+                <p>— Minh Tuấn, CTO tại TechCorp</p>
+                <div style="margin-top: 20px; display: flex; gap: 5px; color: #fbbf24;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-form-container">
+            <div class="auth-box">
+                <a href="index.html" class="logo"><i class="fa-solid fa-cube"></i> AI DocOps</a>
+                <h1 class="auth-title">Chào mừng trở lại</h1>
+                <p class="auth-subtitle">Vui lòng nhập thông tin để truy cập Dashboard.</p>
+
+                <form action="app-dashboard.html">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="name@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-group check-group">
+                        <label class="checkbox">
+                            <input type="checkbox"> Ghi nhớ tôi
+                        </label>
+                        <a href="forgot-password.html" style="font-size: 13px;">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn-auth">Đăng nhập</button>
+                </form>
+
+                <div class="divider"><span>Hoặc tiếp tục với</span></div>
+
+                <div class="social-login">
+                    <button class="btn-social"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
+                    <button class="btn-social"><i class="fab fa-microsoft" style="color: #00A4EF;"></i> Microsoft</button>
+                </div>
+
+                <div class="form-footer">
+                    Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

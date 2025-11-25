@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lưu trữ & Backup | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html" class="active"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search" style="color: #94a3b8;"></i>
+                    <input type="text" placeholder="Tìm kiếm file backup...">
+                </div>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body">
+                
+                <div class="page-title">
+                    <h2>Quản lý Lưu trữ & Backup</h2>
+                    <p>AI Secure Archiving Agent đang bảo vệ dữ liệu và tối ưu hóa chi phí lưu trữ.</p>
+                </div>
+
+                <div class="backup-status">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-check-circle" style="font-size: 24px;"></i>
+                        <div>
+                            <div style="font-weight: 700;">Hệ thống an toàn</div>
+                            <div style="font-size: 13px;">Bản sao lưu gần nhất: <strong>03:00 AM hôm nay</strong> • Đã mã hóa AES-256</div>
+                        </div>
+                    </div>
+                    <button class="btn-sm" style="background: #166534; color: white; border: none;">Sao lưu ngay</button>
+                </div>
+
+                <div class="storage-overview">
+                    <div class="storage-header">
+                        <div class="storage-total">124.5 GB <span>đã dùng trên 500 GB</span></div>
+                        <button class="btn-sm" style="background: white; border: 1px solid #e2e8f0; color: var(--text-dark);">Nâng cấp gói</button>
+                    </div>
+                    
+                    <div class="storage-bar">
+                        <div class="sb-segment bg-docs" style="width: 45%;" title="Tài liệu (Docs)"></div>
+                        <div class="sb-segment bg-media" style="width: 25%;" title="Hình ảnh/Video"></div>
+                        <div class="sb-segment bg-backup" style="width: 15%;" title="Bản Backup"></div>
+                        </div>
+
+                    <div class="storage-legend">
+                        <div class="legend-item"><div class="dot bg-docs"></div> Tài liệu (45%)</div>
+                        <div class="legend-item"><div class="dot bg-media"></div> Hình ảnh/Video (25%)</div>
+                        <div class="legend-item"><div class="dot bg-backup"></div> Backup Hệ thống (15%)</div>
+                        <div class="legend-item"><div class="dot bg-other"></div> Còn trống (15%)</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 20px; font-size: 18px;">Quy tắc Vòng đời (AI Automation Rules)</h3>
+                <div class="policy-grid">
+                    <div class="policy-card policy-active">
+                        <div class="policy-header">
+                            <div class="policy-title"><i class="fas fa-history" style="color: var(--success); margin-right: 8px;"></i> Lưu trữ dài hạn</div>
+                            <div class="switch-toggle switch-active"></div>
+                        </div>
+                        <p class="policy-desc">Tự động chuyển các tài liệu Hợp đồng đã ký xong trên <strong>5 năm</strong> vào kho lạnh (Cold Storage) để giảm chi phí.</p>
+                        <div style="font-size: 12px; color: var(--text-light);">
+                            <i class="fas fa-robot"></i> AI gợi ý: Đã chuyển 1,200 files tháng này.
+                        </div>
+                    </div>
+
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <div class="policy-title"><i class="fas fa-trash-alt" style="color: var(--text-light); margin-right: 8px;"></i> Tự động dọn dẹp</div>
+                            <div class="switch-toggle"></div>
+                        </div>
+                        <p class="policy-desc">Tự động xóa vĩnh viễn các file trong thùng rác sau <strong>30 ngày</strong> và các bản nháp không hoạt động sau <strong>90 ngày</strong>.</p>
+                        <div style="font-size: 12px; color: var(--text-light);">
+                            Trạng thái: Đang tắt
+                        </div>
+                    </div>
+
+                    <div class="policy-card policy-active">
+                        <div class="policy-header">
+                            <div class="policy-title"><i class="fas fa-lock" style="color: var(--success); margin-right: 8px;"></i> Khóa tuân thủ (GDPR)</div>
+                            <div class="switch-toggle switch-active"></div>
+                        </div>
+                        <p class="policy-desc">Ngăn chặn việc xóa hoặc chỉnh sửa các tài liệu Nhân sự và Tài chính trong vòng <strong>3 năm</strong> theo luật định.</p>
+                        <div style="font-size: 12px; color: var(--text-light);">
+                            <i class="fas fa-shield-alt"></i> Đang bảo vệ 5,400 tài liệu.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-archive" style="color: #94a3b8; margin-right: 8px;"></i> Kho lưu trữ lạnh (Cold Storage)</h3>
+                        <button class="btn-sm" style="border: 1px solid #e2e8f0; background: white;"><i class="fas fa-download"></i> Khôi phục</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tên gói lưu trữ</th>
+                                <th>Năm</th>
+                                <th>Số lượng file</th>
+                                <th>Kích thước</th>
+                                <th>Hạn lưu trữ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-box" style="color: #8b5cf6; margin-right: 10px;"></i> Hồ sơ nhân sự nghỉ việc 2022</td>
+                                <td>2022</td>
+                                <td>150</td>
+                                <td>2.4 GB</td>
+                                <td>Vĩnh viễn</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-box" style="color: #8b5cf6; margin-right: 10px;"></i> Báo cáo tài chính 2020-2023</td>
+                                <td>Mixed</td>
+                                <td>45</td>
+                                <td>1.1 GB</td>
+                                <td>2030</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

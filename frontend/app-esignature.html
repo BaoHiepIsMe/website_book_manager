@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chữ ký số | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html" class="active"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search" style="color: #94a3b8;"></i>
+                    <input type="text" placeholder="Tìm kiếm hợp đồng, người ký...">
+                </div>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body">
+                
+                <div class="page-title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2>Trung tâm Chữ ký số</h2>
+                        <p>AI đang giám sát <b>12</b> luồng ký. Tự động nhắc nhở sau 24h.</p>
+                    </div>
+                    <button class="btn-sm" style="background: var(--accent); color: white; border: none; padding: 10px 20px;">
+                        <i class="fas fa-pen-nib"></i> Tạo luồng ký mới
+                    </button>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 20px;">
+                    <div class="card" style="flex-direction: row; align-items: center; padding: 20px;">
+                        <div class="card-icon icon-orange" style="margin-bottom: 0; margin-right: 15px;"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <div class="number">3</div>
+                            <h3 style="margin: 0;">Cần tôi ký duyệt</h3>
+                        </div>
+                    </div>
+                    <div class="card" style="flex-direction: row; align-items: center; padding: 20px;">
+                        <div class="card-icon icon-blue" style="margin-bottom: 0; margin-right: 15px;"><i class="fas fa-spinner"></i></div>
+                        <div>
+                            <div class="number">5</div>
+                            <h3 style="margin: 0;">Chờ người khác ký</h3>
+                        </div>
+                    </div>
+                    <div class="card" style="flex-direction: row; align-items: center; padding: 20px;">
+                        <div class="card-icon icon-green" style="margin-bottom: 0; margin-right: 15px;"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <div class="number">128</div>
+                            <h3 style="margin: 0;">Đã hoàn thành</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="tab-menu">
+                        <div class="tab-item active">Cần xử lý <span class="tab-count">3</span></div>
+                        <div class="tab-item">Đang chờ <span class="tab-count">5</span></div>
+                        <div class="tab-item">Đã hoàn thành</div>
+                        <div class="tab-item">Đã hủy</div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Tên tài liệu</th>
+                                <th>Người ký (Signatories)</th>
+                                <th>Tiến độ</th>
+                                <th>AI Action</th>
+                                <th>Hạn chót (Deadline)</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr style="background-color: #fffbeb;"> <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 600; color: #b45309;">Hợp đồng Thuê Văn phòng 2025</div>
+                                            <div style="font-size: 11px; color: var(--text-light);">Người gửi: CEO John Doe</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <div class="avatar-sm done" title="John Doe (Đã ký)">JD</div>
+                                        <div class="avatar-sm pending" title="Tôi (Chưa ký)">ME</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrapper">
+                                        <div class="progress-text"><span>1/2</span> <span>50%</span></div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 50%;"></div></div>
+                                    </div>
+                                </td>
+                                <td><span style="font-size: 12px; color: #b45309;"><i class="fas fa-exclamation-circle"></i> Cần bạn ký ngay</span></td>
+                                <td>Hôm nay</td>
+                                <td>
+                                    <button class="btn-sm" style="background: var(--accent); color: white; border: none;">Ký ngay</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-word" style="color: #3b82f6; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 500;">Thỏa thuận Bảo mật (NDA) - Partner X</div>
+                                            <div style="font-size: 11px; color: var(--text-light);">Gửi lúc: 10:00 AM</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <div class="avatar-sm done">ME</div>
+                                        <div class="avatar-sm pending" style="background: #94a3b8;">PX</div> </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrapper">
+                                        <div class="progress-text"><span>1/2</span> <span>50%</span></div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 50%;"></div></div>
+                                    </div>
+                                </td>
+                                <td><span style="font-size: 12px; color: var(--text-light);"><i class="fas fa-robot"></i> Đã nhắc tự động</span></td>
+                                <td>27/11/2025</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 500;">Biên bản Nghiệm thu Dự án A</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <div class="avatar-sm done">A</div>
+                                        <div class="avatar-sm done">B</div>
+                                        <div class="avatar-sm pending">C</div>
+                                        <div class="avatar-sm pending">D</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrapper">
+                                        <div class="progress-text"><span>2/4</span> <span>50%</span></div>
+                                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 50%;"></div></div>
+                                    </div>
+                                </td>
+                                <td><span style="font-size: 12px; color: var(--text-light);">AI đang chờ lượt</span></td>
+                                <td>30/11/2025</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

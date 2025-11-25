@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho tài liệu | AI DocOps</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-cube" style="color: #3b82f6; margin-right: 10px;"></i> AI DocOps
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-label">Tổng quan</div>
+                <a href="app-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                
+                <div class="menu-label" style="margin-top: 20px;">AI Agents</div>
+                <a href="app-documents.html" class="active"><i class="fas fa-folder-open"></i> Kho tài liệu</a>
+                <a href="app-esignature.html"><i class="fas fa-file-signature"></i> Chữ ký số</a>
+                <a href="app-audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+                <a href="app-storage.html"><i class="fas fa-database"></i> Lưu trữ</a>
+
+                <div class="menu-label" style="margin-top: 20px;">Hệ thống</div>
+                <a href="app-settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search" style="color: #94a3b8;"></i>
+                    <input type="text" placeholder="Tìm kiếm tài liệu...">
+                </div>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-body">
+                
+                <div class="page-title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2>Kho tài liệu trung tâm</h2>
+                        <p>Quản lý bởi <b>AI Auto-Classification Agent</b></p>
+                    </div>
+                    <button class="btn-sm" style="background: var(--accent); color: white; border: none; padding: 10px 20px;">
+                        <i class="fas fa-plus"></i> Tạo mới
+                    </button>
+                </div>
+
+                <div class="upload-zone">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Kéo thả tài liệu vào đây để AI xử lý</h3>
+                    <p style="color: var(--text-light); font-size: 13px;">Hỗ trợ PDF, DOCX, XLSX, JPG. AI sẽ tự động đọc, đổi tên và phân loại.</p>
+                </div>
+
+                <div class="folder-section">
+                    <div class="section-title-sm">Thư mục tự động (Smart Folders)</div>
+                    <div class="folder-grid">
+                        <div class="folder-card">
+                            <i class="fas fa-folder folder-icon"></i>
+                            <div>
+                                <div style="font-weight: 600; font-size: 14px;">Hợp đồng</div>
+                                <div style="font-size: 12px; color: var(--text-light);">128 files</div>
+                            </div>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fas fa-folder folder-icon"></i>
+                            <div>
+                                <div style="font-weight: 600; font-size: 14px;">Hóa đơn & Tax</div>
+                                <div style="font-size: 12px; color: var(--text-light);">45 files</div>
+                            </div>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fas fa-folder folder-icon"></i>
+                            <div>
+                                <div style="font-weight: 600; font-size: 14px;">Nhân sự (HR)</div>
+                                <div style="font-size: 12px; color: var(--text-light);">32 files</div>
+                            </div>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fas fa-folder folder-icon"></i>
+                            <div>
+                                <div style="font-weight: 600; font-size: 14px;">Marketing</div>
+                                <div style="font-size: 12px; color: var(--text-light);">210 files</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="section-header">
+                        <div class="section-title-sm" style="margin-bottom: 0;">Tài liệu gần đây</div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-sm" style="border: 1px solid #e2e8f0; background: white;"><i class="fas fa-filter"></i> Lọc</button>
+                            <button class="btn-sm" style="border: 1px solid #e2e8f0; background: white;"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Tên tài liệu</th>
+                                <th style="width: 25%;">Phân loại (AI Tags)</th>
+                                <th>Kích thước</th>
+                                <th>Độ tin cậy (AI)</th>
+                                <th>Ngày sửa</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 500; font-size: 14px;">HD_LaoDong_NguyenVanA.pdf</div>
+                                            <div style="font-size: 11px; color: var(--text-light);">Gốc: scan_00123.pdf</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="ai-tag"><i class="fas fa-tag"></i> Hợp đồng</span>
+                                    <span class="ai-tag"><i class="fas fa-user"></i> Nhân sự</span>
+                                </td>
+                                <td>2.4 MB</td>
+                                <td><span class="confidence-score">99%</span></td>
+                                <td>10:30 AM</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-invoice-dollar" style="color: #10b981; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 500; font-size: 14px;">Invoice_Google_Q3.pdf</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="ai-tag"><i class="fas fa-tag"></i> Hóa đơn</span>
+                                    <span class="ai-tag"><i class="fas fa-building"></i> Đối ngoại</span>
+                                </td>
+                                <td>1.1 MB</td>
+                                <td><span class="confidence-score">96%</span></td>
+                                <td>Hôm qua</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-file-word" style="color: #3b82f6; font-size: 18px;"></i>
+                                        <div>
+                                            <div style="font-weight: 500; font-size: 14px;">Kế_hoạch_Kinh_doanh_2025.docx</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="ai-tag"><i class="fas fa-tag"></i> Kế hoạch</span>
+                                    <span class="ai-tag"><i class="fas fa-bullhorn"></i> Sales</span>
+                                </td>
+                                <td>5.6 MB</td>
+                                <td><span class="confidence-score">88%</span></td>
+                                <td>23/11/2025</td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
