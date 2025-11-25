@@ -190,5 +190,53 @@
             </div>
         </main>
     </div>
+
+    <!-- N8N Integration Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/n8n-api.js"></script>
+    
+    <script>
+        // E-Signature Management với n8n
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load signature flows từ n8n
+            await loadSignatureFlows();
+            
+            // Xử lý nút "Tạo luồng ký mới"
+            const createBtn = document.querySelector('.page-title button');
+            if (createBtn) {
+                createBtn.addEventListener('click', () => {
+                    // Có thể mở modal hoặc redirect
+                    alert('Tính năng tạo luồng ký sẽ mở modal hoặc trang mới');
+                });
+            }
+            
+            // Xử lý nút "Ký ngay"
+            document.querySelectorAll('button:contains("Ký ngay")').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const row = this.closest('tr');
+                    const documentId = row.dataset.documentId;
+                    const signatureId = row.dataset.signatureId;
+                    
+                    // Redirect đến trang ký
+                    window.location.href = `app-signing-pad.html?doc=${documentId}&sig=${signatureId}`;
+                });
+            });
+        });
+        
+        async function loadSignatureFlows() {
+            try {
+                // Gọi API để lấy danh sách signature flows
+                // Giả sử có endpoint getSignatureFlows trong n8n
+                const result = await n8nApi.callWebhook('/webhook/get-signature-flows', {
+                    status: 'pending'
+                });
+                
+                // Update UI với dữ liệu từ API
+                console.log('Signature flows:', result);
+            } catch (error) {
+                console.error('Lỗi khi load signature flows:', error);
+            }
+        }
+    </script>
 </body>
 </html>

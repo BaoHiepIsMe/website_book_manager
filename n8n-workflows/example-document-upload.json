@@ -1,0 +1,196 @@
+{
+  "name": "Document Upload & Classification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "document-upload",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "document-upload"
+    },
+    {
+      "parameters": {
+        "operation": "save",
+        "binaryData": true,
+        "fileName": "={{ $json.body.file.name }}",
+        "fileContent": "={{ $binary.data }}"
+      },
+      "id": "save-file-node",
+      "name": "Save File",
+      "type": "n8n-nodes-base.writeFile",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://vision.googleapis.com/v1/images:annotate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "requests",
+              "value": "=[{\"image\":{\"content\":\"{{ $binary.data }}\"},\"features\":[{\"type\":\"DOCUMENT_TEXT_DETECTION\"}]}]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ocr-node",
+      "name": "OCR (Google Vision)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// AI Classification Logic\nconst ocrText = $input.first().json.responses[0].fullTextAnnotation?.text || '';\n\n// Phân loại dựa trên keywords\nlet category = 'Khác';\nlet tags = [];\n\nif (ocrText.toLowerCase().includes('hợp đồng') || ocrText.toLowerCase().includes('contract')) {\n  category = 'Hợp đồng';\n  tags.push('Hợp đồng');\n}\n\nif (ocrText.toLowerCase().includes('hóa đơn') || ocrText.toLowerCase().includes('invoice')) {\n  category = 'Hóa đơn';\n  tags.push('Hóa đơn');\n}\n\nif (ocrText.toLowerCase().includes('nhân sự') || ocrText.toLowerCase().includes('hr')) {\n  tags.push('Nhân sự');\n}\n\n// Auto rename\nconst originalName = $input.first().json.body.file.name;\nconst date = new Date().toISOString().split('T')[0];\nconst newName = `${category}_${date}_${originalName}`;\n\nreturn {\n  originalName,\n  newName,\n  category,\n  tags,\n  ocrText: ocrText.substring(0, 500), // Limit text length\n  confidence: 95\n};"
+      },
+      "id": "classification-node",
+      "name": "AI Classification",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO documents (id, original_name, stored_name, file_path, file_size, file_type, ai_tags, ai_confidence, category, uploaded_by, uploaded_at) VALUES (gen_random_uuid(), '{{ $json.originalName }}', '{{ $json.newName }}', '/storage/{{ $json.newName }}', {{ $json.body.file.size }}, '{{ $json.body.file.type }}', '{{ JSON.stringify($json.tags) }}', {{ $json.confidence }}, '{{ $json.category }}', '{{ $json.body.metadata.userId }}', NOW()) RETURNING *;"
+      },
+      "id": "save-db-node",
+      "name": "Save to Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [1050, 300],
+      "credentials": {
+        "postgres": {
+          "id": "1",
+          "name": "PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO audit_logs (id, user_id, action, resource_type, resource_id, ip_address, timestamp, metadata) VALUES (gen_random_uuid(), '{{ $json.body.metadata.userId }}', 'DOCUMENT_UPLOAD', 'document', (SELECT id FROM documents WHERE stored_name = '{{ $json.newName }}' LIMIT 1), '{{ $json.body.metadata.ipAddress || 'unknown' }}', NOW(), '{{ JSON.stringify({fileName: $json.newName, category: $json.category}) }}');"
+      },
+      "id": "audit-log-node",
+      "name": "Create Audit Log",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "credentials": {
+        "postgres": {
+          "id": "1",
+          "name": "PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, document: $json, message: 'Document uploaded and processed successfully' } }}"
+      },
+      "id": "response-node",
+      "name": "Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1450, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Save File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save File": {
+      "main": [
+        [
+          {
+            "node": "OCR (Google Vision)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OCR (Google Vision)": {
+      "main": [
+        [
+          {
+            "node": "AI Classification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Classification": {
+      "main": [
+        [
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Database": {
+      "main": [
+        [
+          {
+            "node": "Create Audit Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Audit Log": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-01T00:00:00.000Z",
+  "versionId": "1"
+}
+

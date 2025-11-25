@@ -181,5 +181,235 @@
             </div>
         </main>
     </div>
+
+    <!-- N8N Integration Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/n8n-api.js"></script>
+    <script src="js/document-service.js"></script>
+    
+    <script>
+        // Document Management với n8n Backend
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadZone = document.querySelector('.upload-zone');
+            const searchInput = document.querySelector('.search-box input');
+            const documentsTable = document.querySelector('table tbody');
+            
+            // 1. Xử lý Upload File (Drag & Drop)
+            if (uploadZone) {
+                // Drag and Drop
+                uploadZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadZone.style.borderColor = '#3b82f6';
+                    uploadZone.style.backgroundColor = '#eff6ff';
+                });
+                
+                uploadZone.addEventListener('dragleave', () => {
+                    uploadZone.style.borderColor = '#e2e8f0';
+                    uploadZone.style.backgroundColor = 'transparent';
+                });
+                
+                uploadZone.addEventListener('drop', async (e) => {
+                    e.preventDefault();
+                    uploadZone.style.borderColor = '#e2e8f0';
+                    uploadZone.style.backgroundColor = 'transparent';
+                    
+                    const files = Array.from(e.dataTransfer.files);
+                    for (const file of files) {
+                        await handleFileUpload(file);
+                    }
+                });
+                
+                // Click to upload
+                uploadZone.addEventListener('click', () => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.multiple = true;
+                    input.accept = '.pdf,.docx,.xlsx,.jpg,.jpeg,.png';
+                    input.onchange = async (e) => {
+                        const files = Array.from(e.target.files);
+                        for (const file of files) {
+                            await handleFileUpload(file);
+                        }
+                    };
+                    input.click();
+                });
+            }
+            
+            // 2. Xử lý Upload File
+            async function handleFileUpload(file) {
+                try {
+                    const result = await documentService.uploadFile(file, 'current-user');
+                    
+                    // Hiển thị thông báo thành công
+                    showNotification('Upload thành công! AI đang xử lý tài liệu...', 'success');
+                    
+                    // Reload danh sách tài liệu sau 2 giây
+                    setTimeout(() => {
+                        loadDocuments();
+                    }, 2000);
+                } catch (error) {
+                    showNotification('Lỗi upload: ' + error.message, 'error');
+                }
+            }
+            
+            // 3. Load danh sách tài liệu từ n8n
+            async function loadDocuments(filters = {}) {
+                try {
+                    const documents = await documentService.getDocuments(filters);
+                    renderDocumentsTable(documents);
+                } catch (error) {
+                    console.error('Lỗi khi load documents:', error);
+                    // Giữ nguyên dữ liệu mẫu nếu API fail
+                }
+            }
+            
+            // 4. Render bảng tài liệu
+            function renderDocumentsTable(documents) {
+                if (!documentsTable || !documents || documents.length === 0) {
+                    return;
+                }
+                
+                documentsTable.innerHTML = documents.map(doc => {
+                    const fileIcon = getFileIcon(doc.fileType || doc.file_type);
+                    const tags = (doc.aiTags || doc.ai_tags || []).map(tag => 
+                        `<span class="ai-tag"><i class="fas fa-tag"></i> ${tag}</span>`
+                    ).join(' ');
+                    
+                    return `
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="${fileIcon}" style="color: #ef4444; font-size: 18px;"></i>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 14px;">${doc.storedName || doc.stored_name || doc.originalName || doc.original_name}</div>
+                                        ${doc.originalName && doc.originalName !== doc.storedName ? 
+                                            `<div style="font-size: 11px; color: var(--text-light);">Gốc: ${doc.originalName}</div>` : ''}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${tags || '<span class="ai-tag">Đang xử lý...</span>'}</td>
+                            <td>${formatFileSize(doc.fileSize || doc.file_size)}</td>
+                            <td><span class="confidence-score">${doc.aiConfidence || doc.ai_confidence || 0}%</span></td>
+                            <td>${formatDate(doc.uploadedAt || doc.uploaded_at || doc.createdAt || doc.created_at)}</td>
+                            <td><i class="fas fa-ellipsis-v" style="color: #94a3b8; cursor: pointer;"></i></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+            
+            // 5. Tìm kiếm tài liệu
+            if (searchInput) {
+                let searchTimeout;
+                searchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    const query = e.target.value.trim();
+                    
+                    searchTimeout = setTimeout(async () => {
+                        if (query.length > 0) {
+                            try {
+                                const results = await documentService.searchDocuments(query);
+                                renderDocumentsTable(results);
+                            } catch (error) {
+                                console.error('Lỗi tìm kiếm:', error);
+                            }
+                        } else {
+                            loadDocuments();
+                        }
+                    }, 500);
+                });
+            }
+            
+            // 6. Helper functions
+            function getFileIcon(fileType) {
+                if (!fileType) return 'fas fa-file';
+                if (fileType.includes('pdf')) return 'fas fa-file-pdf';
+                if (fileType.includes('word') || fileType.includes('docx')) return 'fas fa-file-word';
+                if (fileType.includes('excel') || fileType.includes('xlsx')) return 'fas fa-file-excel';
+                if (fileType.includes('image')) return 'fas fa-image';
+                return 'fas fa-file';
+            }
+            
+            function formatFileSize(bytes) {
+                if (!bytes) return '0 B';
+                const k = 1024;
+                const sizes = ['B', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+            }
+            
+            function formatDate(dateString) {
+                if (!dateString) return 'N/A';
+                const date = new Date(dateString);
+                const now = new Date();
+                const diff = now - date;
+                const minutes = Math.floor(diff / 60000);
+                const hours = Math.floor(diff / 3600000);
+                const days = Math.floor(diff / 86400000);
+                
+                if (minutes < 1) return 'Vừa xong';
+                if (minutes < 60) return `${minutes} phút trước`;
+                if (hours < 24) return `${hours} giờ trước`;
+                if (days < 7) return `${days} ngày trước`;
+                return date.toLocaleDateString('vi-VN');
+            }
+            
+            function showNotification(message, type = 'info') {
+                // Tạo notification element
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+            
+            // Load documents khi trang được tải
+            loadDocuments();
+        });
+    </script>
+    
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        .upload-zone {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-zone:hover {
+            border-color: #3b82f6 !important;
+        }
+    </style>
 </body>
 </html>

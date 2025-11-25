@@ -179,5 +179,56 @@
         </main>
     </div>
 
+    <!-- N8N Integration Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/n8n-api.js"></script>
+    
+    <script>
+        // Load Dashboard Stats từ n8n
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const stats = await n8nApi.getDashboardStats();
+                updateDashboardStats(stats);
+            } catch (error) {
+                console.error('Lỗi khi load dashboard stats:', error);
+                // Giữ nguyên dữ liệu mẫu nếu API fail
+            }
+            
+            // Load recent activities
+            try {
+                const activities = await n8nApi.getDocuments({ limit: 4 });
+                updateRecentActivities(activities.documents || activities);
+            } catch (error) {
+                console.error('Lỗi khi load activities:', error);
+            }
+        });
+        
+        function updateDashboardStats(stats) {
+            if (!stats) return;
+            
+            // Update stats cards
+            const statsCards = document.querySelectorAll('.stats-grid .card .number');
+            if (statsCards.length >= 4 && stats) {
+                if (stats.newDocuments !== undefined) {
+                    statsCards[0].textContent = stats.newDocuments.toLocaleString('vi-VN');
+                }
+                if (stats.pendingSignatures !== undefined) {
+                    statsCards[1].textContent = stats.pendingSignatures;
+                }
+                if (stats.riskAlerts !== undefined) {
+                    statsCards[2].textContent = stats.riskAlerts;
+                }
+                if (stats.storageUsage !== undefined) {
+                    statsCards[3].textContent = stats.storageUsage + '%';
+                }
+            }
+        }
+        
+        function updateRecentActivities(activities) {
+            // Có thể cập nhật bảng activities nếu cần
+            console.log('Recent activities:', activities);
+        }
+    </script>
+
 </body>
 </html>
