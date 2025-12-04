@@ -212,3 +212,6 @@ N8N_CORS_ORIGIN=http://localhost:3000
 
 Nếu gặp vấn đề, xem file `n8n-setup-guide.md` để biết chi tiết cách setup từng workflow.
 
+
+
+
